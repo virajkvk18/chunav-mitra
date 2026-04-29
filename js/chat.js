@@ -21,11 +21,20 @@ const HARDCODED_KEY = '';
 async function fetchServerKey() {
   try {
     const res = await fetch('/api/config');
-    if (!res.ok) return '';
+    if (!res.ok) {
+      console.warn('[Chunav Mitra] /api/config returned', res.status, '— falling back to localStorage');
+      return '';
+    }
     const data = await res.json();
-    return data.configured ? data.key : '';
-  } catch {
-    return ''; // Silently fail — user will see the API key input as fallback
+    if (data.configured && data.key) {
+      console.info('[Chunav Mitra] ✅ API key loaded from server env var');
+      return data.key;
+    }
+    console.warn('[Chunav Mitra] GEMINI_API_KEY not set in Vercel env vars');
+    return '';
+  } catch(e) {
+    console.warn('[Chunav Mitra] Could not reach /api/config:', e.message);
+    return '';
   }
 }
 
