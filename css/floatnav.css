@@ -1,0 +1,343 @@
+/* ══════════════════════════════════════════════════════
+   CHUNAV MITRA — FLOATING PILL NAVBAR
+   A compact pill that expands into a grouped dropdown panel.
+   Replaces the old full-width sticky navbar entirely.
+   ══════════════════════════════════════════════════════ */
+
+/* ── Remove old navbar styles completely ── */
+.navbar { display: none !important; }
+
+/* ══════════════════════════════════
+   WRAPPER — fixed top-center
+   ══════════════════════════════════ */
+.floatnav-wrap {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(720px, calc(100vw - 32px));
+}
+
+/* ══════════════════════════════════
+   PILL — the always-visible bar
+   ══════════════════════════════════ */
+.floatnav-pill {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px 0 12px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  border: 1px solid rgba(221, 225, 236, 0.8);
+  border-radius: 999px;
+  box-shadow:
+    0 2px 8px rgba(13, 19, 32, 0.08),
+    0 8px 32px rgba(13, 19, 32, 0.06),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  transition: box-shadow 0.25s ease, background 0.25s ease;
+}
+[data-theme="dark"] .floatnav-pill {
+  background: rgba(12, 20, 38, 0.88);
+  border-color: rgba(26, 37, 64, 0.8);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.floatnav-pill:hover {
+  box-shadow:
+    0 4px 16px rgba(13, 19, 32, 0.12),
+    0 12px 40px rgba(13, 19, 32, 0.08);
+}
+
+/* ── Logo ── */
+.floatnav-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.floatnav-logo-mark {
+  width: 32px; height: 32px;
+  border-radius: 9px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(200,90,0,0.2);
+}
+.floatnav-logo-text em {
+  color: var(--saffron, #F7610A);
+  font-style: normal;
+}
+
+/* ── Right controls ── */
+.floatnav-pill-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── Icon buttons (theme toggle) ── */
+.floatnav-icon-btn {
+  width: 34px; height: 34px;
+  border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.floatnav-icon-btn:hover {
+  background: rgba(0,0,0,0.05);
+  color: var(--text-primary);
+}
+[data-theme="dark"] .floatnav-icon-btn:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+/* ── Google Translate in pill ── */
+.translate-widget {
+  display: flex;
+  align-items: center;
+}
+.translate-widget .goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+.translate-widget .goog-te-gadget select {
+  font-size: 0.72rem !important;
+  font-family: var(--font-body, sans-serif) !important;
+  color: var(--text-secondary) !important;
+  background: transparent !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 999px !important;
+  padding: 4px 8px !important;
+  cursor: pointer !important;
+  outline: none !important;
+  max-width: 88px;
+  height: 30px;
+  appearance: auto !important;
+}
+.translate-widget .goog-te-gadget > span,
+.translate-widget .goog-logo-link { display: none !important; }
+
+/* ── Menu button (pill-shaped CTA) ── */
+.floatnav-menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--text-primary);
+  color: var(--bg-card, #fff);
+  border: none;
+  font-family: var(--font-display, sans-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.4,0,0.2,1);
+  white-space: nowrap;
+}
+[data-theme="dark"] .floatnav-menu-btn {
+  background: rgba(255,255,255,0.9);
+  color: #0A0E18;
+}
+.floatnav-menu-btn:hover {
+  background: var(--saffron, #F7610A);
+  color: white;
+  transform: scale(1.03);
+}
+.floatnav-chevron {
+  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+  flex-shrink: 0;
+}
+.floatnav-menu-btn[aria-expanded="true"] .floatnav-chevron {
+  transform: rotate(180deg);
+}
+.floatnav-menu-btn[aria-expanded="true"] {
+  background: var(--saffron, #F7610A);
+  color: white;
+}
+
+/* ══════════════════════════════════
+   DROPDOWN PANEL
+   ══════════════════════════════════ */
+.floatnav-dropdown {
+  width: 100%;
+  margin-top: 10px;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow:
+    0 4px 16px rgba(13,19,32,0.08),
+    0 20px 56px rgba(13,19,32,0.12);
+  overflow: hidden;
+
+  /* Hidden state */
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  pointer-events: none;
+  transition:
+    opacity 0.22s cubic-bezier(0.4,0,0.2,1),
+    transform 0.22s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="dark"] .floatnav-dropdown {
+  background: var(--bg-card, #0C1426);
+  box-shadow:
+    0 4px 16px rgba(0,0,0,0.3),
+    0 20px 56px rgba(0,0,0,0.4);
+}
+
+/* Open state */
+.floatnav-dropdown.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.floatnav-dropdown-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 0;
+  padding: 20px 8px;
+}
+
+/* ── Group ── */
+.floatnav-group {
+  padding: 0 16px;
+}
+.floatnav-group-label {
+  display: block;
+  font-family: var(--font-display, sans-serif);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  padding: 0 8px;
+}
+.floatnav-group ul {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ── Nav items ── */
+.floatnav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.855rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  letter-spacing: -0.01em;
+  position: relative;
+}
+.floatnav-item::before {
+  content: attr(data-icon);
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+.floatnav-item:hover {
+  background: var(--saffron-pale, #FFF0E6);
+  color: var(--saffron, #F7610A);
+  transform: translateX(3px);
+}
+[data-theme="dark"] .floatnav-item:hover {
+  background: rgba(247,97,10,0.10);
+}
+.floatnav-item:hover::before {
+  transform: scale(1.2);
+}
+.floatnav-item.active {
+  background: var(--saffron-pale, #FFF0E6);
+  color: var(--saffron, #F7610A);
+  font-weight: 700;
+}
+[data-theme="dark"] .floatnav-item.active {
+  background: rgba(247,97,10,0.12);
+}
+
+/* ── Dividers between groups ── */
+.floatnav-divider {
+  width: 1px;
+  background: var(--border);
+  margin: 4px 0;
+  align-self: stretch;
+}
+
+/* ══════════════════════════════════
+   BACKDROP
+   ══════════════════════════════════ */
+.floatnav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background: rgba(0,0,0,0.15);
+  backdrop-filter: blur(2px);
+  transition: opacity 0.22s ease;
+}
+.floatnav-backdrop.open {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* ══════════════════════════════════
+   BODY OFFSET — so hero isn't hidden
+   ══════════════════════════════════ */
+body { padding-top: 0; }
+.hero, main > section:first-child { padding-top: calc(52px + 40px); }
+
+/* ══════════════════════════════════
+   RESPONSIVE — Mobile
+   ══════════════════════════════════ */
+@media (max-width: 640px) {
+  .floatnav-wrap { top: 12px; width: calc(100vw - 24px); }
+
+  .floatnav-pill { height: 48px; padding: 0 6px 0 10px; }
+
+  .floatnav-logo-text { display: none; }
+
+  .floatnav-dropdown-inner {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 16px 8px;
+  }
+  .floatnav-divider {
+    width: auto; height: 1px;
+    margin: 8px 16px;
+    align-self: auto;
+  }
+  .floatnav-group { padding: 0 8px; margin-bottom: 4px; }
+
+  .translate-widget { display: none; }
+}
+
+@media (max-width: 480px) {
+  .floatnav-menu-btn { padding: 7px 12px; font-size: 0.75rem; }
+  .floatnav-menu-label { display: none; }
+  .floatnav-menu-btn { padding: 7px 10px; }
+}

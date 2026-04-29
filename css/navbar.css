@@ -1,0 +1,108 @@
+/* ════════════════════════════════════════════════════════════
+   CHUNAV MITRA — PROFESSIONAL COLOR & UI REFINEMENTS
+   Loaded last — overrides only colors and non-layout styles
+   ════════════════════════════════════════════════════════════ */
+
+/* ════════════════════════════════════════
+   PROFESSIONAL COLOR PALETTE
+   ════════════════════════════════════════ */
+:root {
+  --saffron:        #C85A00;
+  --saffron-light:  #E06A10;
+  --saffron-pale:   #FDF3EC;
+  --saffron-glow:   rgba(200, 90, 0, 0.12);
+  --green:          #0A6B40;
+  --green-light:    #0E855A;
+  --green-pale:     #EDF7F2;
+  --navy:           #0D1320;
+  --navy-mid:       #152032;
+  --navy-light:     #1E3045;
+  --white:          #FFFFFF;
+  --off-white:      #F5F6F8;
+  --gray-100:       #ECEEF2;
+  --gray-200:       #D8DBE4;
+  --gray-400:       #8E95A8;
+  --gray-600:       #525A6E;
+  --gray-800:       #1C2133;
+  --bg:             #F5F6F8;
+  --bg-card:        #FFFFFF;
+  --bg-card-hover:  #FAFBFD;
+  --text-primary:   #0D1320;
+  --text-secondary: #4A5268;
+  --text-muted:     #8E95A8;
+  --border:         #DDE1EC;
+  --border-strong:  #B4BACB;
+  --shadow-sm:  0 1px 4px rgba(13,19,32,0.06), 0 1px 2px rgba(13,19,32,0.04);
+  --shadow-md:  0 4px 16px rgba(13,19,32,0.08), 0 2px 4px rgba(13,19,32,0.04);
+  --shadow-lg:  0 16px 48px rgba(13,19,32,0.12), 0 4px 12px rgba(13,19,32,0.06);
+  --navbar-h: 60px;
+}
+
+[data-theme="dark"] {
+  --bg:            #0A0E18;
+  --bg-card:       #101624;
+  --bg-card-hover: #151E30;
+  --text-primary:  #E8ECF4;
+  --text-secondary:#8A93AA;
+  --text-muted:    #4E586C;
+  --border:        #1C2840;
+  --border-strong: #253450;
+  --saffron-pale:  #1A0F06;
+  --green-pale:    #061510;
+  --gray-100:      #101624;
+  --off-white:     #0A0E18;
+}
+
+/* ════════════════════════════════════════
+   BUTTON REFINEMENTS
+   ════════════════════════════════════════ */
+.btn-primary {
+  background: var(--saffron);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(200,90,0,0.22);
+  border-radius: 8px;
+}
+.btn-primary:hover {
+  background: var(--saffron-light);
+  box-shadow: 0 4px 16px rgba(200,90,0,0.3);
+  transform: translateY(-1px);
+}
+.btn-ghost { border: 1px solid var(--border-strong); color: var(--text-primary); border-radius: 8px; }
+.btn-ghost:hover { border-color: var(--saffron); color: var(--saffron); background: var(--saffron-pale); transform: translateY(-1px); }
+
+/* ════════════════════════════════════════
+   SECTION TAG
+   ════════════════════════════════════════ */
+.section-tag { background: var(--gray-100); color: var(--text-secondary); border: 1px solid var(--border); border-radius: 4px; }
+
+/* ════════════════════════════════════════
+   HERO BADGE
+   ════════════════════════════════════════ */
+.hero-badge { background: var(--gray-100); border: 1px solid var(--border); color: var(--text-secondary); border-radius: 6px; }
+[data-theme="dark"] .hero-badge { background: var(--bg-card); border-color: var(--border); }
+
+/* ════════════════════════════════════════
+   STAT PILLS
+   ════════════════════════════════════════ */
+.stat-pill { border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); box-shadow: var(--shadow-sm); }
+.stat-num { color: var(--saffron); font-weight: 800; letter-spacing: -0.04em; }
+
+/* ════════════════════════════════════════
+   CHAT FAB
+   ════════════════════════════════════════ */
+.chat-fab { background: var(--navy); color: white; box-shadow: 0 4px 16px rgba(13,19,32,0.28); border-radius: 10px; padding: 12px 20px; }
+.chat-fab:hover { background: var(--navy-mid); box-shadow: 0 8px 24px rgba(13,19,32,0.35); transform: translateY(-2px); }
+.fab-badge { background: var(--saffron); color: white; font-size: 0.6rem; font-weight: 800; padding: 2px 6px; border-radius: 4px; }
+
+/* ════════════════════════════════════════
+   AWARENESS CTA
+   ════════════════════════════════════════ */
+.awareness-cta { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); animation: none; border-radius: 14px; }
+
+/* ════════════════════════════════════════
+   SCROLLBAR
+   ════════════════════════════════════════ */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--saffron); }
