@@ -163,10 +163,10 @@ function initTheme() {
   const toggle = document.getElementById('themeToggle');
   if (!toggle) return;
   const icon = toggle.querySelector('.theme-icon');
-  let dark = false;
+  let dark = true;
 
-  try { dark = localStorage.getItem('chunav_theme') === 'dark'; } catch(e) {}
-  if (dark) { document.documentElement.setAttribute('data-theme', 'dark'); icon.textContent = '☀️'; }
+  try { const saved = localStorage.getItem('chunav_theme'); dark = saved !== null ? saved === 'dark' : true; } catch(e) {}
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light'); icon.textContent = dark ? '☀️' : '🌙';
 
   toggle.addEventListener('click', () => {
     dark = !dark;
