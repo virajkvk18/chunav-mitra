@@ -106,3 +106,20 @@
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--saffron); }
+
+/* ════════════════════════════════════════
+   NAVBAR VISIBILITY — HARD FIX
+   Must be last rule in last CSS file loaded
+   ════════════════════════════════════════ */
+nav.navbar,
+#navbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: var(--navbar-h) !important;
+}
